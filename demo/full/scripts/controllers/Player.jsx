@@ -21,6 +21,7 @@ class Player extends React.Component {
       displaySpinner: false,
       displaySettings: false,
       isStopped: true,
+      enableVideoThumbnails: false,
     };
   }
 
@@ -98,9 +99,10 @@ class Player extends React.Component {
   }
 
   render() {
-    const { player, displaySpinner, isStopped } = this.state;
+    const { player, displaySpinner, isStopped, enableVideoThumbnails } = this.state;
 
     const loadVideo = (video) => {
+      this.setState({ enableVideoThumbnails: video.enableVideoThumbnails });
       if (video.lowLatencyMode) {
         this.state.player.dispatch("ENABLE_LIVE_CATCH_UP");
       } else {
@@ -163,6 +165,7 @@ class Player extends React.Component {
                   videoElement={this.playerWrapperElement}
                   toggleSettings={toggleSettings}
                   stopVideo={stopVideo}
+                  enableVideoThumbnails={enableVideoThumbnails}
                 /> : null
             }
           </div>

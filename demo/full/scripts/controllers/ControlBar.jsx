@@ -21,6 +21,7 @@ function ControlBar ({
   isStopped,
   liveGap,
   lowLatencyMode,
+  enableVideoThumbnails,
   maximumPosition,
   playbackRate,
   player,
@@ -60,6 +61,7 @@ function ControlBar ({
     <div className="controls-bar-container">
       <Progressbar
         player={player}
+        enableVideoThumbnails={enableVideoThumbnails}
         onSeek={() => changeStickToLiveEdge(false)}
       />
       <div className="controls-bar">
