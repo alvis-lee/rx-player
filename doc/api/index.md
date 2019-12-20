@@ -1044,8 +1044,26 @@ Each of the objects in the returned array have the following properties:
     language.
 
 
-In _DirectFile_ mode (see [loadVideo
-options](./loadVideo_options.md#prop-transport)), returns an empty Array.
+In _DirectFile_ mode
+(see [loadVideo options](./loadVideo_options.md#prop-transport)) :
+- If the file is a browser supported manifest file (as .hls on Safari) and audio
+  track managing API (``mediaElement.audioTracks``) is supported on the browser :
+  returns an array that has these properties :
+  - ``active`` (``Boolean``): Whether the track is the one currently active or
+    not.
+
+  - ``id`` (``string``): The id used to identify the track. Use it for
+    setting the track via ``setAudioTrack``.
+
+  - ``language`` (``string``): The language the audio track is in, as set in
+    the [Manifest](../terms.md#manifest).
+
+  - ``normalized`` (``string``): An attempt to translate the ``language``
+    property into an ISO 639-3 language code (for now only support translations
+    from ISO 639-1 and ISO 639-2 language codes). If the translation attempt
+    fails (no corresponding ISO 639-3 language code is found), it will equal the
+    value of ``language``
+- If no streaming file or no track managing API : returns an empty Array.
 
 
 <a name="meth-getAvailableTextTracks"></a>
@@ -1076,8 +1094,26 @@ Each of the objects in the returned array have the following properties:
     not.
 
 
-In _DirectFile_ mode (see [loadVideo
-options](./loadVideo_options.md#prop-transport)), returns an empty Array.
+In _DirectFile_ mode
+(see [loadVideo options](./loadVideo_options.md#prop-transport)) :
+- If the file is a browser supported manifest file (as .hls on Safari) and text
+  track managing API (``mediaElement.textTracks``) is supported on the browser :
+  returns an array of objects that has these properties :
+  - ``active`` (``Boolean``): Whether the track is the one currently active or
+    not.
+
+  - ``id`` (``string``): The id used to identify the track. Use it for
+    setting the track via ``setAudioTrack``.
+
+  - ``language`` (``string``): The language the audio track is in, as set in
+    the [Manifest](../terms.md#manifest).
+
+  - ``normalized`` (``string``): An attempt to translate the ``language``
+    property into an ISO 639-3 language code (for now only support translations
+    from ISO 639-1 and ISO 639-2 language codes). If the translation attempt
+    fails (no corresponding ISO 639-3 language code is found), it will equal the
+    value of ``language``
+- If no streaming file or no track managing API : returns an empty Array.
 
 
 <a name="meth-getAvailableVideoTracks"></a>
@@ -1114,8 +1150,26 @@ Each of the objects in the returned array have the following properties:
     - ``frameRate`` (``string|undefined``): The video framerate.
 
 
-In _DirectFile_ mode (see [loadVideo
-options](./loadVideo_options.md#prop-transport)), returns an empty Array.
+In _DirectFile_ mode
+(see [loadVideo options](./loadVideo_options.md#prop-transport)) :
+- If the file is a browser supported manifest file (as .hls on Safari) and video
+  track managing API (``mediaElement.videoTracks``) is supported on the browser :
+  returns an array of objects that has these properties :
+  - ``active`` (``Boolean``): Whether the track is the one currently active or
+    not.
+
+  - ``id`` (``string``): The id used to identify the track. Use it for
+    setting the track via ``setAudioTrack``.
+
+  - ``language`` (``string``): The language the audio track is in, as set in
+    the [Manifest](../terms.md#manifest).
+
+  - ``normalized`` (``string``): An attempt to translate the ``language``
+    property into an ISO 639-3 language code (for now only support translations
+    from ISO 639-1 and ISO 639-2 language codes). If the translation attempt
+    fails (no corresponding ISO 639-3 language code is found), it will equal the
+    value of ``language``
+- If no streaming file or no track managing API : returns an empty Array.
 
 
 <a name="meth-getAudioTrack"></a>
@@ -1155,6 +1209,23 @@ The track is an object with the following properties:
 ``undefined`` in _DirectFile_ mode (see [loadVideo
 options](./loadVideo_options.md#prop-transport)).
 
+In _DirectFile_ mode
+(see [loadVideo options](./loadVideo_options.md#prop-transport)) :
+- If the file is a browser supported manifest file (as .hls on Safari) and audio
+  track managing API (``mediaElement.audioTracks``) is supported on the browser :
+  returns an object that has these properties :
+  - ``id`` (``string``): The id used to identify the track. Use it for
+    setting the track via ``setAudioTrack``.
+
+  - ``language`` (``string``): The language the audio track is in, as set in
+    the [Manifest](../terms.md#manifest).
+
+  - ``normalized`` (``string``): An attempt to translate the ``language``
+    property into an ISO 639-3 language code (for now only support translations
+    from ISO 639-1 and ISO 639-2 language codes). If the translation attempt
+    fails (no corresponding ISO 639-3 language code is found), it will equal the
+    value of ``language``- If no streaming file or no track managing API : ``undefined``.
+- If no streaming file or no track managing API : ``undefined``.
 
 <a name="meth-getTextTrack"></a>
 ### getTextTrack ###############################################################
@@ -1184,8 +1255,23 @@ The track is an object with the following properties:
 
 ``undefined`` if no content has been loaded yet.
 
-``undefined`` in _DirectFile_ mode (see [loadVideo
-options](./loadVideo_options.md#prop-transport)).
+In _DirectFile_ mode
+(see [loadVideo options](./loadVideo_options.md#prop-transport)) :
+- If the file is a browser supported manifest file (as .hls on Safari) and text
+  track managing API (``mediaElement.textTracks``) is supported on the browser :
+  returns an object that has these properties :
+  - ``id`` (``string``): The id used to identify the track. Use it for
+    setting the track via ``setAudioTrack``.
+
+  - ``language`` (``string``): The language the audio track is in, as set in
+    the [Manifest](../terms.md#manifest).
+
+  - ``normalized`` (``string``): An attempt to translate the ``language``
+    property into an ISO 639-3 language code (for now only support translations
+    from ISO 639-1 and ISO 639-2 language codes). If the translation attempt
+    fails (no corresponding ISO 639-3 language code is found), it will equal the
+    value of ``language``- If no streaming file or no track managing API : ``undefined``.
+- If no streaming file or no track managing API : ``undefined``.
 
 
 <a name="meth-getVideoTrack"></a>
@@ -1222,8 +1308,22 @@ The track is an object with the following properties:
 
 ``undefined`` if no content has been loaded yet.
 
-``undefined`` in _DirectFile_ mode (see [loadVideo
-options](./loadVideo_options.md#prop-transport)).
+In _DirectFile_ mode
+(see [loadVideo options](./loadVideo_options.md#prop-transport)) :
+- If the file is a browser supported manifest file (as .hls on Safari) and video
+  track managing API (``mediaElement.videoTracks``) is supported on the browser :
+  returns an object that has these properties :
+  - ``id`` (``string``): The id used to identify the track. Use it for
+    setting the track via ``setAudioTrack``.
+
+  - ``language`` (``string``): The language the audio track is in, as set in
+    the [Manifest](../terms.md#manifest).
+
+  - ``normalized`` (``string``): An attempt to translate the ``language``
+    property into an ISO 639-3 language code (for now only support translations
+    from ISO 639-1 and ISO 639-2 language codes). If the translation attempt
+    fails (no corresponding ISO 639-3 language code is found), it will equal the
+    value of ``language``- If no streaming file or no track managing API : ``undefined``.- If no streaming file or no track managing API : ``undefined``.
 
 
 <a name="meth-setAudioTrack"></a>
@@ -1235,8 +1335,10 @@ Set a new audio track from its id, recuperated from ``getAvailableAudioTracks``.
 
 ---
 
-:warning: This option will have no effect for contents loaded in _DirectFile_
-mode (see [loadVideo options](./loadVideo_options.md#prop-transport)).
+:warning: This option will have no effect in _DirectFile_ mode
+(see [loadVideo options](./loadVideo_options.md#prop-transport)) when either :
+- No streaming file was loaded through browser (as .hls on Safari)
+- No audio track API was supported on current browser
 
 ---
 
@@ -1250,8 +1352,10 @@ Set a new text track from its id, recuperated from ``getAvailableTextTracks``.
 
 ---
 
-:warning: This option will have no effect for contents loaded in _DirectFile_
-mode (see [loadVideo options](./loadVideo_options.md#prop-transport)).
+:warning: This option will have no effect in _DirectFile_ mode
+(see [loadVideo options](./loadVideo_options.md#prop-transport)) when either :
+- No streaming file was loaded through browser (as .hls on Safari)
+- No text track API was supported on current browser
 
 ---
 
@@ -1263,8 +1367,10 @@ Deactivate the current text track, if one.
 
 ---
 
-:warning: This option will have no effect for contents loaded in _DirectFile_
-mode (see [loadVideo options](./loadVideo_options.md#prop-transport)).
+:warning: This option will have no effect in _DirectFile_ mode
+(see [loadVideo options](./loadVideo_options.md#prop-transport)) when either :
+- No streaming file was loaded through browser (as .hls on Safari)
+- No text track API was supported on current browser
 
 ---
 
@@ -1299,8 +1405,10 @@ During this period of time:
 
 ---
 
-:warning: This option will have no effect for contents loaded in _DirectFile_
-mode (see [loadVideo options](./loadVideo_options.md#prop-transport)).
+:warning: This option will have no effect in _DirectFile_ mode
+(see [loadVideo options](./loadVideo_options.md#prop-transport)) when either :
+- No streaming file was loaded through browser (as .hls on Safari)
+- No video track API was supported on current browser
 
 ---
 
@@ -1360,8 +1468,10 @@ player.setPreferredAudioTracks([
 
 ---
 
-:warning: This method will have no effect for contents loaded in _DirectFile_
-mode (see [loadVideo options](./loadVideo_options.md#prop-transport)).
+:warning: This option will have no effect in _DirectFile_ mode
+(see [loadVideo options](./loadVideo_options.md#prop-transport)) when either :
+- No streaming file was loaded through browser (as .hls on Safari)
+- No audio track API was supported on current browser
 
 ---
 
@@ -1443,8 +1553,10 @@ player.setPreferredTextTracks([
 
 ---
 
-:warning: This method will have no effect for contents loaded in _DirectFile_
-mode (see [loadVideo options](./loadVideo_options.md#prop-transport)).
+:warning: This option will have no effect in _DirectFile_ mode
+(see [loadVideo options](./loadVideo_options.md#prop-transport)) when either :
+- No streaming file was loaded through browser (as .hls on Safari)
+- No text track API was supported on current browser
 
 ---
 
